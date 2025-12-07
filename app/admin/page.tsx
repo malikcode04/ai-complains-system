@@ -89,10 +89,10 @@ export default function AdminPage() {
     }, []);
 
     const handleAction = async (action: 'Resolve' | 'Reject') => {
-        if (!selectedComplaint || !window.ethereum) return;
+        if (!selectedComplaint || !(window as any).ethereum) return;
         setProcessing(true);
         try {
-            const provider = new ethers.BrowserProvider(window.ethereum);
+            const provider = new ethers.BrowserProvider((window as any).ethereum);
             const signer = await provider.getSigner();
             const contract = new ethers.Contract(FLARE_CONTRACT_ADDRESS, FLARE_CONTRACT_ABI, signer);
 

@@ -57,8 +57,8 @@ export default function SubmitPage() {
 
             // 1. Submit to Blockchain (if connected)
             // Note: This relies on browser wallet (MetaMask) injection
-            if (window.ethereum) {
-                const provider = new ethers.BrowserProvider(window.ethereum);
+            if ((window as any).ethereum) {
+                const provider = new ethers.BrowserProvider((window as any).ethereum);
                 const signer = await provider.getSigner();
                 const contract = new ethers.Contract(FLARE_CONTRACT_ADDRESS, FLARE_CONTRACT_ABI, signer);
 
