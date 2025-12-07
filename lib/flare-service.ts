@@ -19,10 +19,7 @@ export interface ChainComplaint {
 }
 
 export async function fetchAllComplaintsFromChain(): Promise<ChainComplaint[]> {
-    if (FLARE_CONTRACT_ADDRESS === "0x0000000000000000000000000000000000000000") {
-        console.warn("Contract address not set in lib/contracts.ts");
-        return [];
-    }
+
 
     try {
         const provider = new ethers.JsonRpcProvider(RPC_URL);
